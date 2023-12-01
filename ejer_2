@@ -1,0 +1,18 @@
+package Ejercicios;
+import java.util.Scanner;
+public class Ejer_2 {
+	
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.println("Ingrese una cadena para ver si es un palindromo:");
+	        String cadenIntroducida = scanner.nextLine().toLowerCase();
+	        
+
+	        if ( cadenIntroducida.equals(new StringBuilder(cadenIntroducida).reverse().toString())) {
+	            System.out.println("La cadena es un palindromo.");
+	        } else {
+	            System.out.println("La cadena no es un palíndromo.");
+	        }
+	    }     
+}
