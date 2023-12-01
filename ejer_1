@@ -1,0 +1,153 @@
+*oterías y apuestas del estado ha contratado a los alumnos de DAW1 del IES Alixar, de quienes tiene muy buenas referencias, para que implementen un algoritmo que permita simular el sorteo extraordinario de Navidad, en el que, como siempre, habrá un bombo con todos los números del sorteo, y un bombo con los premios. De cada bombo se extraerá una bola, obteniendo así el numero premiado y su correspondiente premio. El bombo de números premiados contendrá las bolas desde el 0 hasta el 99.999. En el bombo de premios contendrá 1.807 bolas, siendo estas:
+
+- Un primer premio (el “gordo de navidad”);
+
+- Un segundo premio.
+
+- Un tercer premio.
+
+- Dos cuartos premios.
+
+- Ocho quintos premios.
+
+- El resto del bombo son premios menores denominados “pedreas”.
+
+
+
+El programa debe implementar la siguiente funcionalidad:
+
+1) Generar el listado oficial de números premiados y sus correspondientes premios.
+
+2) Permitir que el usuario compruebe si el único décimo de lotería que ha adquirido ha sido o no agraciado, y en caso afirmativo con qué premio
+
+Ejemplo de salida:
+
+Listado oficial de premios:
+
+Numero: 60510 agraciado con: pedrea
+
+Numero: 06041 agraciado con: pedrea
+
+…
+
+Numero: 74512 agraciado con: primero
+
+Numero: 09848 agraciado con: pedrea
+
+Introduzca su décimo con todas las cifras:
+
+6041
+
+Introduzca su décimo con todas las cifras:
+
+06041
+
+Agraciado con: pedrea
+
+Sorteo finalizado
+
+
+Consideraciones para la implementación:
+
+La implementación de las siguientes funciones debe incluirse en tu código:
+
+Creación de los bombos e inserción de bolas:
+
+public static int[] creaBomboNumeros(int numBolas) //devuelve un array de tamaño máximo numBolas con todos los números del sorteo
+
+public static String[] creaBomboPremios(int numPremios) //devuelve un array de tamaño máximo numPremios con todos los premios del sorteo
+
+Extracción de bolas:
+
+public static int dameNumero(int[] bombo) //devuelve un numero al azar del bombo de números, que será objeto de un premio.
+
+public static String damePremio(String[] bombo) //devuelve un premio al azar del bombo de premios
+
+Adicionalmente deberás crear una función para comprobar si el único décimo que has comprado, ha sido agraciado con un premio del sorteo.
+
+Consideraciones adicionales:
+
+Incluye una captura que muestre cómo a través del debug has modificado la variable con tu décimo de lotería para que coincida con el gordo del sorteo.
+
+Incluye un control de excepciones que muestre por consola el mensaje asociado a la misma, e indique, tanto si se producen excepciones como si no, que el sorteo ha finalizado.
+
+Provoca una excepción modificando el valor de una variable mediante debug, e incluye una captura de la misma.
+
+Incluye comentarios en el código.*/
+
+package Ejercicios;
+import java.util.Scanner;
+public class Ejer_1 {
+	public static int[] creaBomboNumeros(int numBolas) {
+		int [] arrayNumeros = new int[numBolas];
+		for (int i = 0;i <=numBolas - 1 ;i++) {
+			arrayNumeros[i]=i;
+		}
+		
+		return arrayNumeros;
+	}
+	public static String[] creaBomboPremios(int numPremios) {
+		String[] arrayPremios = new String[numPremios];
+		arrayPremios[0] = "Primer Premio";
+		arrayPremios[1] = "Segundo Premio";
+		arrayPremios[2] = "Tercer Premio";
+		arrayPremios[3] = "Cuarto Premio";
+		arrayPremios[4] = "Cuarto Premio";
+		
+		for (int i = 5;i <=12 ;i++) {
+			arrayPremios[i]="Quinto Premio";
+		}
+		for (int i = 12;i <=numPremios - 1 ;i++) {
+			arrayPremios[i]="Pedraza";
+		}
+		
+		return arrayPremios;
+	}
+	public static int dameNumero(int[] bombo) {
+		
+		int numPremiado = bombo[(int)(Math.random() * bombo.length-1)];
+		
+		
+		return numPremiado;
+	}
+	
+	
+	public static String damePremio(String[] bombo) {
+		
+		String premioSacado= bombo[(int)(Math.random() * bombo.length-1)];	
+		
+		
+			return premioSacado;
+	}
+	
+	public static void main(String[] args) {
+		final int TAM = 100000;
+		final int tam = 1807;
+		String[][] arraySorteo = new String[tam][tam];
+		int [] arrayNumeros = creaBomboNumeros(TAM);
+		String[] arrayPremios = creaBomboPremios(tam);
+		System.out.println("Listado oficial de premios:\n");
+			for	(int i = 0; i<tam;i++) {
+				String numFormateado =String.format("%05d",dameNumero(arrayNumeros));
+				String premio =String.format("%05d",damePremio(arrayPremios));
+				
+				
+				System.out.println("El nº "+numFormateado+" ha sido premiado con "+ premio);	
+				
+				
+				arraySorteo[i][0] = numFormateado;
+				arraySorteo[i][1] = premio;
+			}
+			
+		System.out.print("Introduzca su décimo con todas las cifras:");
+		Scanner sc = new Scanner(System.in);
+		String decimoUsuario = sc.nextLine();
+		
+		//me falta un bucle para comparar tu decimo con lose existentes.
+		
+		
+		
+		
+		}
+	}
+
